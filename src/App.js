@@ -29,7 +29,7 @@ class App extends React.Component {
     };
   }
 
-  toggleTask = (id) => {
+  toggleTask = id => {
     this.setState ({
       toDo: this.state.toDo.map(todo => {
         if (todo.id === id){
@@ -41,7 +41,7 @@ class App extends React.Component {
           return todo;
         }
       })
-    })
+    });
   };
 
   submitTask = (taskName) => {
