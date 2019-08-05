@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList.js'
+import TodoForm from './components/TodoComponents/TodoForm.js'
 
 const todoList = [
   {
@@ -28,28 +29,43 @@ class App extends React.Component {
     };
   }
 
-  toggleTask = id => {
+  toggleItem = id => {
     this.setState ({
-      todo: this.state.todo.map(task => {
-        if (task.id === id){
+      todo: this.state.todo.map(item => {
+        if (item.id === id){
           return {
-            ...task,
-            completed: !task.completed
+            ...item,
+            completed: !item.completed
           }
+        } else {
+          return item;
         }
       })
     })
+  };
+
+  addItem = itemTask => {
+    const newTask = {
+      task:itemTask,
+      id: Date.now(),
+      completed: false
+    }
+    this.setState({
+      todo: [...this.state.todo, newTask]
+    })
   }
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
+
   render() {
     return (
       <div className="App">
         <div className="header">
           <h2>Todo List</h2>
+          <TodoForm 
+            addItem={this.addItem}
+          />
         </div>
         <TodoList
-        todo = {this.state.todo}
+          todo = {this.state.todo}
         />
       </div>
     );
