@@ -21,8 +21,7 @@ const todoList = [
 ]
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  constructor(){
+  constructor() {
     super();
     this.state = {
       toDo: todoList
