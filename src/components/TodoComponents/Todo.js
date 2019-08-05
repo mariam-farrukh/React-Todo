@@ -17,7 +17,7 @@ const ToDo = (props) => {
         <div className='todo' 
             onClick={() => props.toggleTask(props.todo.id)} 
             styling={styling}>
-            <h2>{props.todo.task}</h2>
+            <li>{props.todo.task}</li>
         </div>
     )
 }

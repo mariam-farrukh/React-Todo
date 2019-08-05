@@ -75,7 +75,7 @@ class App extends React.Component {
           toDo = {this.state.toDo}
           toggleTask={this.toggleTask}
         />
-        <button onClick = {this.clearTask}>Tasks Cleared</button>
+        <button onClick = {this.clearTask}>Clear Tasks</button>
       </div>
     );
   }
