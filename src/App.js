@@ -25,33 +25,40 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todo: todoList
+      toDo: todoList
     };
   }
 
-  toggleItem = id => {
+  toggleTask = (id) => {
     this.setState ({
-      todo: this.state.todo.map(item => {
-        if (item.id === id){
+      toDo: this.state.toDo.map(todo => {
+        if (todo.id === id){
           return {
-            ...item,
-            completed: !item.completed
+            ...todo,
+            completed: !todo.completed
           }
         } else {
-          return item;
+          return todo;
         }
       })
     })
   };
 
-  addItem = itemTask => {
+  submitTask = (taskName) => {
     const newTask = {
-      task:itemTask,
+      task: taskName,
       id: Date.now(),
       completed: false
     }
     this.setState({
-      todo: [...this.state.todo, newTask]
+      toDo: [...this.state.toDo, newTask]
+    })
+  }
+
+  clearTask = e => {
+    e.preventDefault();
+    this.setState({
+      toDo: [...this.state.toDo.filter(task => !task.completed)]
     })
   }
 
@@ -61,12 +68,14 @@ class App extends React.Component {
         <div className="header">
           <h2>Todo List</h2>
           <TodoForm 
-            addItem={this.addItem}
+            addTask={this.submitTask}
           />
         </div>
         <TodoList
-          todo = {this.state.todo}
+          toDo = {this.state.toDo}
+          toggleTask={this.toggleTask}
         />
+        <button onClick = {this.clearTask}>Tasks Cleared</button>
       </div>
     );
   }
